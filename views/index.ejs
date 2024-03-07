@@ -1,0 +1,58 @@
+<!-- views/home.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Custom CSS */
+    .btn-login {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container text-center mt-5">
+    <h1>Selamat Datang di Aplikasi CRM</h1>
+    <p>Silakan pilih untuk login atau registrasi</p>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <a href="/auth/login" class="btn btn-primary btn-lg btn-login">
+            <i class="fas fa-sign-in-alt mr-2"></i>Login
+          </a>
+        <button class="btn btn-success btn-lg btn-login" id="registerBtn">
+          <i class="fas fa-user-plus mr-2"></i>Registrasi
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Anime.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Animation using Anime.js
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+
+    anime({
+      targets: '#loginBtn',
+      translateY: [-50, 0],
+      opacity: [0, 1],
+      duration: 1000,
+      easing: 'easeOutExpo'
+    });
+
+    anime({
+      targets: '#registerBtn',
+      translateY: [-50, 0],
+      opacity: [0, 1],
+      duration: 1000,
+      delay: 200,
+      easing: 'easeOutExpo'
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Custom CSS */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      padding-top: 40px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .card-icon {
+      font-size: 48px;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <i class="fas fa-users card-icon"></i>
+            <h5 class="card-title">Customers</h5>
+            <p class="card-text">Manage your customers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <i class="fas fa-handshake card-icon"></i>
+            <h5 class="card-title">Opportunities</h5>
+            <p class="card-text">Explore new opportunities.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <i class="fas fa-chart-line card-icon"></i>
+            <h5 class="card-title">Analytics</h5>
+            <p class="card-text">Track your business analytics.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Anime.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Animation using Anime.js
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        anime({
+          targets: card,
+          translateY: -10,
+          duration: 200,
+          easing: 'easeInOutSine'
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        anime({
+          targets: card,
+          translateY: 0,
+          duration: 200,
+          easing: 'easeInOutSine'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

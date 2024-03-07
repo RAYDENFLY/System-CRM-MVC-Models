@@ -1,0 +1,93 @@
+<!-- views/auth/login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Custom CSS */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .login-container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 400px;
+      margin: 50px auto;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #007bff;
+    }
+
+    .login-container form label {
+      display: block;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .login-container form input[type="text"],
+    .login-container form input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+    }
+
+    .login-container form button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-container form button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2></i> Login</h2>
+    <form action="/auth/login" method="POST">
+      <div class="form-group">
+        <label for="username"><i class="fas fa-user"></i> Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password"><i class="fas fa-lock"></i> Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+    </form>
+  </div>
+
+  <!-- Load Anime.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Animation using Anime.js
+    const loginContainer = document.querySelector('.login-container');
+
+    anime({
+      targets: loginContainer,
+      translateY: [-50, 0],
+      opacity: [0, 1],
+      duration: 1000,
+      easing: 'easeOutExpo'
+    });
+  </script>
+</body>
+</html>
