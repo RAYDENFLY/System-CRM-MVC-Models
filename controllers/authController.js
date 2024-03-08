@@ -18,7 +18,9 @@ exports.login_post = async (req, res) => {
             // Kredensial tidak valid, arahkan kembali ke halaman login
             res.redirect('/login');
         } else {
-            // Kredensial valid, arahkan ke halaman dashboard atau halaman lain yang sesuai
+            // Kredensial valid, simpan ID pengguna dalam session
+            req.session.userId = user.id;
+            // Arahkan ke halaman dashboard atau halaman lain yang sesuai
             res.redirect('/dashboard');
         }
     } catch (error) {

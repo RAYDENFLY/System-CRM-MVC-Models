@@ -11,6 +11,10 @@ const User = sequelize.define('User', {
     password: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    fullName: { // Menambahkan kolom untuk nama lengkap
+        type: DataTypes.STRING,
+        allowNull: true // Bergantung pada kebutuhan Anda
     }
 }, {
     timestamps: false // Menonaktifkan kolom createdAt dan updatedAt

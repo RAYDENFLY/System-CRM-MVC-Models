@@ -1,6 +1,7 @@
 // app.js
 const express = require('express');
 const bodyParser = require('body-parser')
+const session = require('express-session');
 
 const errorHandler = require('./middlewares/errorHandlers')
 const customerRoutes = require('./routes/customerRoutes');
@@ -12,6 +13,12 @@ const { dashboard_get } = require('./controllers/dashboardContoller');
 const app = express();
 const port = 4500;
 
+// Middleware untuk mengatur sesi
+app.use(session({
+  secret: 'ray123', // Ganti dengan kunci rahasia yang lebih aman
+  resave: false,
+  saveUninitialized: false
+}));
 // Middleware untuk parsing JSON
 app.use(express.json());
 // Set EJS sebagai template engine

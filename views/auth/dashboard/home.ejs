@@ -40,10 +40,32 @@
       font-size: 48px;
       color: #007bff;
     }
+
+    .analytics {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+      margin-bottom: 40px; /* Added margin bottom */
+    }
+
+    /* Footer CSS */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #f8f9fa;
+      color: rgb(29, 28, 28);
+      padding: 10px 0;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+  <%- include('materials/navbar.ejs') %>
   <div class="container">
+    <h2 style="text-align: center; margin-bottom: 42px;">Main Menu</h2>
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card">
@@ -75,6 +97,42 @@
     </div>
   </div>
 
+  <div class="container">
+    <h2 style="text-align: center;">Latest Data</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="analytics">
+          <h4>New Customers</h4>
+          <ul>
+            <!-- Insert new customer data here -->
+            <% if (newCustomers.length > 0) { %>
+              <% newCustomers.forEach(customer => { %>
+                <li><%= customer.name %></li>
+              <% }); %>
+            <% } else { %>
+              <p>No new customers</p>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="analytics">
+          <h4>New Opportunities</h4>
+          <ul>
+            <!-- Insert new opportunity data here -->
+            <% if (newOpportunities.length > 0) { %>
+              <% newOpportunities.forEach(opportunity => { %>
+                <li><%= opportunity.name %></li>
+              <% }); %>
+            <% } else { %>
+              <p>No new opportunities</p>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<h1><br><br></h1>
   <!-- Load Anime.js library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script>
@@ -101,5 +159,10 @@
       });
     });
   </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>System CRM Ver.MVC Models <br> &copy; 2024 345.ryx. All rights reserved.</p>
+  </footer>
 </body>
 </html>
