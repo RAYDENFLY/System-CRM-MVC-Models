@@ -68,14 +68,16 @@
     <h2 style="text-align: center; margin-bottom: 42px;">Main Menu</h2>
     <div class="row">
       <div class="col-md-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <i class="fas fa-users card-icon"></i>
-            <h5 class="card-title">Customers</h5>
-            <p class="card-text">Manage your customers.</p>
+        <a href="/customers" style="text-decoration: none; color: inherit;">
+          <div class="card">
+            <div class="card-body">
+              <i class="fas fa-users card-icon"></i>
+              <h5 class="card-title">Customers</h5>
+              <p class="card-text">Manage your customers.</p>
+            </div>
           </div>
-        </div>
-      </div>
+        </a>
+      </div>      
       <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body">
@@ -113,6 +115,8 @@
               <p>No new customers</p>
             <% } %>
           </ul>
+          <!-- Tambahkan elemen canvas untuk grafik New Customers -->
+          <canvas id="newCustomersChart"></canvas>
         </div>
       </div>
       <div class="col-md-6">
@@ -128,8 +132,10 @@
               <p>No new opportunities</p>
             <% } %>
           </ul>
+          <!-- Tambahkan elemen canvas untuk grafik New Opportunities -->
+          <canvas id="newOpportunitiesChart"></canvas>
         </div>
-      </div>
+      </div>      
     </div>
   </div>
 <h1><br><br></h1>
@@ -159,6 +165,61 @@
       });
     });
   </script>
+  <!-- Script untuk menggambar grafik -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Mendapatkan elemen canvas untuk menggambar grafik
+  const newCustomersChart = document.getElementById('newCustomersChart').getContext('2d');
+  const newOpportunitiesChart = document.getElementById('newOpportunitiesChart').getContext('2d');
+
+  // Data untuk grafik New Customers
+  const newCustomersData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [{
+      label: 'New Customers',
+      data: [65, 59, 80, 81, 56, 55],
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+    }]
+  };
+
+  // Data untuk grafik New Opportunities
+  const newOpportunitiesData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [{
+      label: 'New Opportunities',
+      data: [35, 49, 70, 91, 36, 45],
+      backgroundColor: 'rgba(255, 159, 64, 0.2)',
+      borderColor: 'rgba(255, 159, 64, 1)',
+      borderWidth: 1
+    }]
+  };
+
+  // Konfigurasi grafik
+  const chartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+
+  // Menggambar grafik New Customers
+  const newCustomersChartInstance = new Chart(newCustomersChart, {
+    type: 'bar',
+    data: newCustomersData,
+    options: chartOptions
+  });
+
+  // Menggambar grafik New Opportunities
+  const newOpportunitiesChartInstance = new Chart(newOpportunitiesChart, {
+    type: 'bar',
+    data: newOpportunitiesData,
+    options: chartOptions
+  });
+</script>
+
 
   <!-- Footer -->
   <footer class="footer">

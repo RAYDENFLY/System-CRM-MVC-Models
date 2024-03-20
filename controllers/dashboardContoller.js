@@ -48,17 +48,30 @@ const getUser = async (req) => {
     }
 };
 
-exports.dashboard_get = async (req, res) => {
+// Middleware untuk memeriksa apakah pengguna telah login
+const requireLogin = (req, res, next) => {
+    if (!req.session.userId) {
+        // Jika pengguna tidak login, arahkan ke halaman login
+        return res.redirect('/auth/login');
+    }
+    next();
+};
+
+// Rute untuk menampilkan dashboard
+exports.dashboard_get = [requireLogin, async (req, res) => {
     try {
         const customers = await Customer.findAll();
         const opportunities = await Opportunity.findAll();
         const newCustomers = await getNewCustomers();
         const newOpportunities = await getNewOpportunities();
-        const user = await getUser(req); // Pass the request object to getUser function
+        const user = await getUser(req); // Dapatkan informasi pengguna saat ini
 
         res.render('auth/dashboard/home', { customers, opportunities, newCustomers, newOpportunities, user });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
     }
-};
+}];
+
+// Terapkan middleware requireLogin ke rute dashboard
+exports.dashboard_get = [requireLogin, exports.dashboard_get];

@@ -10,8 +10,10 @@ const authRoutes = require('./routes/authRoutes')
 const homeRoutes = require('./routes/homeRoutes');
 const dashboardRoutes = require('./routes/dahsboardRoutes');
 const { dashboard_get } = require('./controllers/dashboardContoller');
+const methodOverride = require('method-override');
 const app = express();
 const port = 4500;
+app.use(methodOverride('_method'));
 
 // Middleware untuk mengatur sesi
 app.use(session({

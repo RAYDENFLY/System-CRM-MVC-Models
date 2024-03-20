@@ -1,58 +1,138 @@
-<!-- views/home.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>System CRM - Home</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     /* Custom CSS */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      padding-top: 80px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
     .btn-login {
       margin-top: 20px;
     }
+
+    .btn-login i {
+      margin-right: 10px;
+    }
+    .thanks-text {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.thanks-text h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.thanks-text img {
+  width: 70px;
+  margin: 10px;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image{
+  background-color: rgba(0, 0, 0, 0.13);
+  align-items: center;
+  width: 520px;
+  border-radius: 20px 20px;
+  display: inline-block;
+}
   </style>
 </head>
 <body>
-  <div class="container text-center mt-5">
-    <h1>Selamat Datang di Aplikasi CRM</h1>
-    <p>Silakan pilih untuk login atau registrasi</p>
-    <div class="row justify-content-center">
+  <div class="container text-center">
+    <div class="row">
+        <div class="col-md-9 mx-auto">
+        <h1 class="mb-4">Selamat Datang di Aplikasi CRM</h1>
+        <p>Sistem CRM (Customer Relationship Management) mempermudah manajemen hubungan pelanggan. Dengan pendekatan Model-View-Controller (MVC), sistem terbagi menjadi model, tampilan, dan pengontrol. Ini memungkinkan pengembangan yang terstruktur dan fokus pada setiap komponen secara terpisah. CRM membantu perusahaan meningkatkan efisiensi, akuisisi, retensi pelanggan, dan pengambilan keputusan strategis.</p>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-5">
       <div class="col-md-4">
-        <a href="/auth/login" class="btn btn-primary btn-lg btn-login">
-            <i class="fas fa-sign-in-alt mr-2"></i>Login
-          </a>
-        <button class="btn btn-success btn-lg btn-login" id="registerBtn">
-          <i class="fas fa-user-plus mr-2"></i>Registrasi
+        <a href="/auth/login" class="btn btn-primary btn-lg btn-block btn-login">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="/auth/register" class="btn btn-success btn-lg btn-block btn-login">
+          <i class="fas fa-user-plus"></i> Registrasi
+        </a>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-4">
+        <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modalMVC">
+          <i class="fas fa-question"></i> Apa Itu MVC?
         </button>
       </div>
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="modalMVC" tabindex="-1" role="dialog" aria-labelledby="modalMVCLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalMVCLabel">Apa Itu Model-View-Controller (MVC)?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>MVC adalah sebuah pola desain arsitektur perangkat lunak yang membagi aplikasi menjadi tiga komponen utama: Model, View, dan Controller.</p>
+          <p><strong>Model:</strong> Bertanggung jawab untuk mengelola data aplikasi.</p>
+          <p><strong>View:</strong> Menampilkan informasi kepada pengguna dan menangani interaksi pengguna.</p>
+          <p><strong>Controller:</strong> Mengatur alur logika aplikasi dan menangani permintaan pengguna.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="thanks-text">
+    <h2>Thanks For</h2>
+    <div class="image">
+    <img src="https://nodejs.org/static/images/logo.svg" alt="NodeJS Logo">
+    <img src="https://upload.wikimedia.org/wikipedia/fr/6/62/MySQL.svg" alt="MySQL Logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Font_Awesome_logomark_blue.svg/512px-Font_Awesome_logomark_blue.svg.png" alt="font-awesome">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/512px-Bootstrap_logo.svg.png" alt="Bootstrap">
+    <img src="https://github.com/RAYDENFLY/System-CRM-MVC-Models/blob/main/image-removebg-preview.png?raw=true" alt="AnimeJS">
+  </div>
+  </div>
+  
+
+
   <!-- Load Anime.js library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-  <script>
-    // Animation using Anime.js
-    const loginBtn = document.getElementById('loginBtn');
-    const registerBtn = document.getElementById('registerBtn');
-
-    anime({
-      targets: '#loginBtn',
-      translateY: [-50, 0],
-      opacity: [0, 1],
-      duration: 1000,
-      easing: 'easeOutExpo'
-    });
-
-    anime({
-      targets: '#registerBtn',
-      translateY: [-50, 0],
-      opacity: [0, 1],
-      duration: 1000,
-      delay: 200,
-      easing: 'easeOutExpo'
-    });
-  </script>
+  <!-- Load jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Load Bootstrap JS library -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
 </body>
 </html>

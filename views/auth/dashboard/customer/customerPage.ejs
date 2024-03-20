@@ -1,0 +1,115 @@
+<!-- views/customers.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customers</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    /* Custom CSS */
+    body {
+    background-color: #f8f9fa;
+    }
+
+    .container {
+    padding-top: 80px;
+    }
+
+    .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+    transform: translateY(-5px);
+    }
+
+    .customer-list {
+    list-style-type: none;
+    padding: 0;
+    }
+
+    .customer-list-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    }
+
+    .customer-list-item:hover {
+    transform: translateY(-5px);
+    }
+
+    .customer-info {
+    margin-bottom: 10px;
+    }
+
+    .no-data {
+    text-align: center;
+    font-style: italic;
+    }
+</style>
+</head>
+<body>
+    <%- include('materials/navbar.ejs') %>
+    <div class="container">
+        <h1 class="mb-4 text-center">Customers</h1>
+        <div class="row mb-3">
+            <div class="col text-center">
+            <a href="/customers/add" class="btn btn-primary"><i class="fas fa-plus"></i> Add Customer</a>
+            </div>
+        </div>
+        <% if (customers.length > 0) { %>
+        <ul class="customer-list">
+            <% customers.forEach(customer => { %>
+            <li class="customer-list-item">
+                <div class="customer-info">
+                <h4><%= customer.name %></h4>
+                <p><i class="fas fa-envelope"></i> <%= customer.email %></p>
+                <p><i class="fas fa-phone"></i> <%= customer.phone %></p>
+                <p><i class="fas fa-map-marker-alt"></i> <%= customer.address %></p>
+                </div>
+                <div class="text-center mt-3">
+                    <div class="row">
+                        <div class="col">
+                            <a href="/customers/edit/<%= customer.id %>" class="btn btn-secondary mr-2"><i class="fas fa-edit"></i> Edit</a>
+                        </div>
+                        <div class="col">
+                            <form action="/customers/delete/<%= customer.id %>" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pelanggan ini?');">
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </li>
+            <% }); %>
+        </ul>
+        <% } else { %>
+        <p class="no-data">Tidak ada data pelanggan yang tersedia.</p>
+        <% } %>
+    </div>
+    
+
+<!-- Load Anime.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+    // Animation using Anime.js (contoh)
+    anime({
+    targets: '.customer-list-item',
+    translateY: [-50, 0],
+    opacity: [0, 1],
+    duration: 1000,
+    easing: 'easeOutExpo',
+    delay: anime.stagger(100)
+    });
+</script>
+</body>
+</html>

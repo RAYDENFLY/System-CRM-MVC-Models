@@ -1,0 +1,122 @@
+<!-- views/customerEditPage.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Customer</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Custom CSS */
+        body {
+    background-color: #f8f9fa;
+    }
+
+
+    .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+    transform: translateY(-5px);
+    }
+
+    .customer-list {
+    list-style-type: none;
+    padding: 0;
+    }
+
+    .customer-list-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    }
+
+    .customer-list-item:hover {
+    transform: translateY(-5px);
+    }
+
+    .customer-info {
+    margin-bottom: 10px;
+    }
+
+    .no-data {
+    text-align: center;
+    font-style: italic;
+    }
+    .container {
+      padding-top: 80px;
+
+    }
+
+    form {
+      margin-top: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <%- include('materials/navbar.ejs') %>
+  <div class="container">
+    <h1>Edit Customer</h1>
+    <form action="/customers/edit/<%= customer.id %>" method="POST">
+      <!-- Formulir untuk mengedit data pelanggan -->
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="<%= customer.name %>" required><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" value="<%= customer.email %>" required><br>
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" name="phone" value="<%= customer.phone %>" required><br>
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" value="<%= customer.address %>" required><br>
+      <button type="submit"><i class="fas fa-save"></i> Update</button>
+    </form>
+  </div>
+
+  <!-- Load Anime.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Animation using Anime.js
+    anime({
+      targets: '.container',
+      translateY: [-50, 0],
+      opacity: [0, 1],
+      duration: 1000,
+      easing: 'easeOutExpo'
+    });
+  </script>
+</body>
+</html>

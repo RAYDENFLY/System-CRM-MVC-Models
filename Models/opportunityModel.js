@@ -24,5 +24,14 @@ const Opportunity = db.define('Opportunity', {
         allowNull: true
     }
 });
+Opportunity.getAllOpportunities = async () => {
+    try {
+        const opportunities = await Opportunity.findAll();
+        return opportunities;
+    } catch (error) {
+        console.error('Error fetching opportunities:', error);
+        return [];
+    }
+};
 
 module.exports = Opportunity;

@@ -34,4 +34,15 @@ const Customer = sequelize.define('Customer', {
     updatedAt: 'updatedAt' // Nama kolom updatedAt
 });
 
+// Menambahkan fungsi getAllCustomers ke model
+Customer.getAllCustomers = async () => {
+    try {
+        const customers = await Customer.findAll();
+        return customers;
+    } catch (error) {
+        console.error('Error fetching customers:', error);
+        return [];
+    }
+};
+
 module.exports = Customer;

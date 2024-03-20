@@ -6,6 +6,15 @@ exports.login_get = (req, res) => {
     res.render('auth/login'); // Ganti 'login' dengan nama file tampilan login Anda
 }
 
+// Middleware untuk memeriksa apakah pengguna telah login
+exports.requireLogin = (req, res, next) => {
+    if (!req.session.userId) {
+        // Jika pengguna tidak login, arahkan ke halaman login
+        return res.redirect('/auth/login');
+    }
+    next();
+};
+
 // Proses login
 exports.login_post = async (req, res) => {
     const { username, password } = req.body;
